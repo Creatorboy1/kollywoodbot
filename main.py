@@ -80,10 +80,15 @@ async def searchmovie(ctx, movie=None):
     moviesdirector = ' '.join(map(str, finalmovie['directors']))
     moviesrating = finalmovie['rating']
     try:
-      finalplot = finalmovie['synopsis'][0]
+      finalplot = finalmovie['plot outline']
     except:
       finalplot = 'N/A'
-    embed2 = discord.Embed(title=moviestitle, description='A summary of your chosen movie!', colour=discord.Color.green(),timestamp=ctx.message.created_at)
+    try:
+      coverpg = finalmovie['cover url']
+    except:
+      coverpg = 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Black_question_mark.png'
+    embed2 = discord.Embed(title=moviestitle, description=finalplot, colour=discord.Color.green(),timestamp=ctx.message.created_at)
+    embed2.set_thumbnail(url=coverpg)
     embed2.add_field(name='Year of Release', value=str(moviesyear))
     embed2.add_field(name='Director Of Movie', value = moviesdirector)
     embed2.add_field(name='Rating (Out of 10)', value = str(moviesrating))

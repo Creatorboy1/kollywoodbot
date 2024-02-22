@@ -1,1 +1,6 @@
-config.py
+from imdb import Cinemagoer
+imdb = Cinemagoer()
+
+movie = imdb.get_movie('000000')
+
+print(sorted(movie.keys()))
