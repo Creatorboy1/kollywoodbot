@@ -224,11 +224,14 @@ async def playaudio(ctx, message2 =None):
 
 @bot.event()
 async def on_member_join(member):
-    welcomeembed = discord.Embed(title="New Member!",description=f"Please welcome our new member, {member.mention}! Nesamani is excited to have you here! :hug_pepe:", colour=discord.Color.green(),timestamp=ctx.message.created_at)
+    joined_at = member.joined_at.strftime("%b %d, %Y, %T")
+    welcomeembed = discord.Embed(title="New Member!",description=f"Please welcome our new member, {member.mention}! Nesamani is excited to have you here! :hug_pepe:", colour=discord.Color.green(),timestamp=joined_at)
     welcomeebed.set_thumbnail(url=member.avatar.url)
     channel = 1145809051888922694
     user = member.id
     await channel.send(embed=welcomeembed)
     await user.send("Welcome to the server da! Hope you have a great time, make sure to check out the welcome screen and get your roles and channels and say hello!")
+    await print(prfx + ' New Member Joined: ' + Fore.CYAN + member.name)
+
 
 bot.run(config.token)
