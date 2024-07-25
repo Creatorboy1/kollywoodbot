@@ -222,4 +222,13 @@ async def playaudio(ctx, message2 =None):
   else:
       await client.say('User is not in a channel.')
 
+@bot.event()
+async def on_member_join(member):
+    welcomeembed = discord.Embed(title="New Member!",description=f"Please welcome our new member, {member.mention}! Nesamani is excited to have you here! :hug_pepe:", colour=discord.Color.green(),timestamp=ctx.message.created_at)
+    welcomeebed.set_thumbnail(url=member.avatar.url)
+    channel = 1145809051888922694
+    user = member.id
+    await channel.send(embed=welcomeembed)
+    await user.send("Welcome to the server da! Hope you have a great time, make sure to check out the welcome screen and get your roles and channels and say hello!")
+
 bot.run(config.token)
